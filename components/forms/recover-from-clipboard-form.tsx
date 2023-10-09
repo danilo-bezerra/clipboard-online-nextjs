@@ -20,6 +20,7 @@ import FormHeading from "./form-heading";
 import axios, { AxiosError } from "axios";
 import toast from "react-hot-toast";
 import ClipboardText from "../clipboard-text";
+import { ArrowBigDown } from "lucide-react";
 
 const formSchema = z.object({
   code: z
@@ -58,7 +59,10 @@ export default function RecoverFromClipboardForm({}: Props) {
 
   return (
     <div className="space-y-6">
-      <FormHeading title="Buscar da clipboard" />
+      <FormHeading
+        title="Buscar da clipboard"
+        icon={<ArrowBigDown className="w-8 h-8 text-indigo-400" />}
+      />
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
           <FormField

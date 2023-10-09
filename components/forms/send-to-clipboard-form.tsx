@@ -21,7 +21,7 @@ import axios, { AxiosError } from "axios";
 import toast from "react-hot-toast";
 import { useState } from "react";
 import { Alert, AlertDescription, AlertTitle } from "../ui/alert";
-import { Terminal, Check, Copy } from "lucide-react";
+import { Terminal, Check, Copy, ArrowBigUp } from "lucide-react";
 
 const formSchema = z.object({
   body: z
@@ -70,7 +70,10 @@ export default function SendToClipboardForm({}: Props) {
 
   return (
     <div className="space-y-6">
-      <FormHeading title="Enviar para clipboard" />
+      <FormHeading
+        title="Enviar para clipboard"
+        icon={<ArrowBigUp className="w-8 h-8 text-indigo-400" />}
+      />
 
       {accessCode != null && (
         <Alert className="bg-green-500/25 dark:border-slate-100/50">
@@ -114,8 +117,9 @@ export default function SendToClipboardForm({}: Props) {
                   <span
                     className={cn(
                       "",
-                      field.value.length > 2048 ||
-                        (field.value.length <= 0 && "text-red-500")
+                      field.value.length > 2048 || field.value.length <= 0
+                        ? "text-red-500"
+                        : "text-green-500"
                     )}
                   >
                     ({field.value.length}/2048)

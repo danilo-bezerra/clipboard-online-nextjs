@@ -6,7 +6,7 @@ type Props = {};
 
 export default function Header({}: Props) {
   return (
-    <header className="">
+    <header className="bg-slate-800 shadow-md">
       <div className="max-w-[1200px] mx-auto p-4 flex gap-6 justify-between ">
         <Logo />
 

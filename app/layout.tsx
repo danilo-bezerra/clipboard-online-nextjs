@@ -19,7 +19,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt-br">
-      <body className={cn("dark dark:bg-slate-800", inter.className)}>
+      <body className={cn("dark  dark:bg-slate-800", inter.className)}>
         <ToastProvider />
         <Header />
         {children}

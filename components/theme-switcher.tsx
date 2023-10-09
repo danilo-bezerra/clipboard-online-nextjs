@@ -22,7 +22,7 @@ export default function ThemeSwitcher({}: Props) {
   useEffect(() => {}, []);
 
   return (
-    <Button onClick={toggleTheme} variant="ghost">
+    <Button onClick={toggleTheme} variant="ghost" className="text-white">
       {theme == "dark" ? (
         <Moon className="w-6 h-6" />
       ) : (

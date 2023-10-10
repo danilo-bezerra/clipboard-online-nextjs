@@ -15,12 +15,13 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "../ui/input";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import FormHeading from "./form-heading";
 import axios, { AxiosError } from "axios";
 import toast from "react-hot-toast";
 import ClipboardText from "../clipboard-text";
 import { ArrowBigDown } from "lucide-react";
+import { useSearchParams } from "next/navigation";
 
 const formSchema = z.object({
   code: z
@@ -36,6 +37,10 @@ type Props = {};
 export default function RecoverFromClipboardForm({}: Props) {
   const [recoveredText, setRecoveredText] = useState<string | null>("");
 
+  const searchParams = useSearchParams();
+
+  const accessCode = searchParams.get("accessCode");
+
   const form = useForm<FormType>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -43,11 +48,10 @@ export default function RecoverFromClipboardForm({}: Props) {
     },
   });
 
-  async function onSubmit(values: FormType) {
+  async function searchClipboard(accessCode: string) {
     setRecoveredText(null);
     try {
-      console.table(values);
-      const res = await axios.get(`/api/clipboards/${values.code}`);
+      const res = await axios.get(`/api/clipboards/${accessCode}`);
 
       setRecoveredText(res.data.body);
     } catch (e: any) {
@@ -55,7 +59,21 @@ export default function RecoverFromClipboardForm({}: Props) {
     }
   }
 
+  async function onSubmit(values: FormType) {
+    if (typeof values.code == "string") {
+      searchClipboard(values.code);
+    }
+  }
+
   const { isSubmitting, isValid } = form.formState;
+
+  useEffect(() => {
+    if (typeof accessCode == "string") {
+      console.log("aaa");
+      searchClipboard(accessCode);
+      form.setValue("code", accessCode);
+    }
+  }, []);
 
   return (
     <div className="space-y-6">
@@ -63,6 +81,7 @@ export default function RecoverFromClipboardForm({}: Props) {
         title="Buscar da clipboard"
         icon={<ArrowBigDown className="w-8 h-8 text-indigo-400" />}
       />
+      {(!!accessCode).toString()}
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
           <FormField

@@ -22,6 +22,7 @@ import toast from "react-hot-toast";
 import { useState } from "react";
 import { Alert, AlertDescription, AlertTitle } from "../ui/alert";
 import { Terminal, Check, Copy, ArrowBigUp } from "lucide-react";
+import Image from "next/image";
 
 const formSchema = z.object({
   body: z
@@ -92,8 +93,20 @@ export default function SendToClipboardForm({}: Props) {
               <Copy className="h-4 w-4" />
             </Button>
           </div>
-          <AlertDescription className="">
-            Código de acesso: <strong>{accessCode}</strong>
+          <AlertDescription className="space-y-4">
+            Código de acesso: <strong>{accessCode}</strong>{" "}
+            <Image
+              src={`https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${
+                window.origin + "?accessCode=" + accessCode
+              }`}
+              width={256}
+              height={256}
+              alt="accessCode qrCode"
+              className="mx-auto"
+            />
+            <p className="text-xs text-center dark:text-slate-300">
+              escaneie o qrCode para acessar a clipboard
+            </p>
           </AlertDescription>
         </Alert>
       )}

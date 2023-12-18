@@ -21,7 +21,7 @@ import axios, { AxiosError } from "axios";
 import toast from "react-hot-toast";
 import { useState } from "react";
 import { Alert, AlertDescription, AlertTitle } from "../ui/alert";
-import { Terminal, Check, Copy, ArrowBigUp } from "lucide-react";
+import { Terminal, Check, Copy, ArrowBigUp, X } from "lucide-react";
 import Image from "next/image";
 
 const formSchema = z.object({
@@ -88,13 +88,28 @@ export default function SendToClipboardForm({}: Props) {
               variant="ghost"
               size="sm"
               className="border"
-              onClick={handleCopy}
+              onClick={() => {
+                setAccessCode(null);
+              }}
             >
-              <Copy className="h-4 w-4" />
+              <X className="h-4 w-4 text-red-500" />
             </Button>
           </div>
           <AlertDescription className="space-y-4">
-            Código de acesso: <strong>{accessCode}</strong>{" "}
+            <div className="flex gap-3 items-center justify-between">
+              <p>
+                Código de acesso: <strong>{accessCode}</strong>{" "}
+              </p>
+
+              <Button
+                variant="ghost"
+                size="sm"
+                className="border"
+                onClick={handleCopy}
+              >
+                <Copy className="h-4 w-4" />
+              </Button>
+            </div>
             <Image
               src={`https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${
                 window.origin + "?accessCode=" + accessCode
@@ -142,9 +157,15 @@ export default function SendToClipboardForm({}: Props) {
               </FormItem>
             )}
           />
-          <Button disabled={isSubmitting || !isValid} type="submit">
-            {isSubmitting ? "Enviando..." : "Enviar"}
-          </Button>
+          <div className="flex gap-3">
+            <Button disabled={isSubmitting || !isValid} type="submit">
+              {isSubmitting ? "Enviando..." : "Enviar"}
+            </Button>
+
+            <Button type="button" variant="outline" onClick={() => form.setValue("body", "")}>
+              Limpar
+            </Button>
+          </div>
         </form>
       </Form>
     </div>

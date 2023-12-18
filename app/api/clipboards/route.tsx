@@ -17,6 +17,15 @@ export async function POST(req: Request) {
       );
     }
 
+    if (text.length > 2048) {
+      return NextResponse.json(
+        {
+          message: "Texto muito longo",
+        },
+        { status: 400 }
+      );
+    }
+
     let accessCode = generateRandomNum();
     let existingClipboardWithCode = await db.clipboard.findUnique({
       where: {
@@ -50,10 +59,8 @@ export async function POST(req: Request) {
           },
         });
 
-        console.log("executei", accessCode);
       } catch (e) {
-        console.log(e);
-        console.log("ocorreu um erro ao deletar", accessCode);
+        console.log("ocorreu um erro ao deletar", accessCode, e);
       }
     }, 1000 * 60 * 15);
 

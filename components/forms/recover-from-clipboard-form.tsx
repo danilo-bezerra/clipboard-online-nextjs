@@ -59,6 +59,11 @@ export default function RecoverFromClipboardForm({}: Props) {
     }
   }
 
+  function handleClear() {
+    setRecoveredText("");
+    form.setValue("code", "");
+  }
+
   async function onSubmit(values: FormType) {
     if (typeof values.code == "string") {
       searchClipboard(values.code);
@@ -69,7 +74,6 @@ export default function RecoverFromClipboardForm({}: Props) {
 
   useEffect(() => {
     if (typeof accessCode == "string") {
-      console.log("aaa");
       searchClipboard(accessCode);
       form.setValue("code", accessCode);
     }
@@ -81,7 +85,6 @@ export default function RecoverFromClipboardForm({}: Props) {
         title="Buscar da clipboard"
         icon={<ArrowBigDown className="w-8 h-8 text-indigo-400" />}
       />
-      {(!!accessCode).toString()}
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
           <FormField
@@ -106,9 +109,15 @@ export default function RecoverFromClipboardForm({}: Props) {
             )}
           />
 
-          <Button disabled={isSubmitting || !isValid} type="submit">
-            {isSubmitting ? "Buscando..." : "Buscar"}
-          </Button>
+          <div className="flex gap-3 items-center">
+            <Button disabled={isSubmitting || !isValid} type="submit">
+              {isSubmitting ? "Buscando..." : "Buscar"}
+            </Button>
+
+            <Button  type="button" variant="outline" onClick={handleClear}>
+              Limpar
+            </Button>
+          </div>
         </form>
       </Form>
 
@@ -116,7 +125,7 @@ export default function RecoverFromClipboardForm({}: Props) {
         <p>{recoveredText}</p>
       </div>
 
-      {recoveredText != null && <ClipboardText text={recoveredText} />}
+      {recoveredText != null && <ClipboardText text={recoveredText} onClose={handleClear}/>}
     </div>
   );
 }

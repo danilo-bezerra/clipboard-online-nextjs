@@ -4,7 +4,7 @@ import Image from "next/image";
 
 export default function Home() {
   return (
-    <main className="px-6 py-12 max-w-[1200px] mx-auto flex-1">
+    <main className="px-6 py-12 max-w-[1200px] mx-auto flex-1  w-full">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
         <SendToClipboardForm />
         <RecoverFromClipboardForm />

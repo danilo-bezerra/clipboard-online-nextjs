@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { cn } from "@/lib/utils";
 import Header from "@/components/header";
+import Footer from "@/components/footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -29,18 +30,7 @@ export default function RootLayout({
         <ToastProvider />
         <Header />
         {children}
-        <footer className="p-6 dark:bg-slate-800">
-          <p className="text-center text-sm ">
-            Criado por{" "}
-            <a
-              className="hover:underline transition-all"
-              href="https://github.com/danilo-bezerra"
-              target="_blank"
-            >
-              <strong>Danilo Bezerra</strong>
-            </a>
-          </p>
-        </footer>
+        <Footer />
       </body>
     </html>
   );

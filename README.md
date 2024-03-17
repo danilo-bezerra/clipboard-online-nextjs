@@ -1,36 +1,31 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Clipboard Online
 
-## Getting Started
+Ferramenta simples e eficiente para enviar e recuperar textos de forma rápida e segura. Aqui você pode armazenar textos temporariamente e acessá-los posteriormente utilizando um código exclusivo.
 
-First, run the development server:
+![Clipboard Online](https://i.postimg.cc/pr5rY0QR/dsadsa.png)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Como Funciona
+
+### Enviar Texto
+
+1. Digite ou cole o texto que deseja armazenar na caixa de entrada fornecida.
+2. Clique no botão "Enviar".
+3. Você receberá um código exclusivo que será necessário para recuperar o texto posteriormente.
+
+### Recuperar Texto
+
+1. Informe o código que você recebeu ao enviar o texto na caixa de entrada "Código".
+2. Clique no botão "Recuperar".
+3. O texto associado ao código será exibido na caixa de texto.
+
+**Atenção:** Os códigos são únicos e não podem ser recuperados caso sejam perdidos. Certifique-se de guardá-los em um local seguro.
+
+## Configuração do Banco de Dados
+
+Este projeto utiliza o Prisma como ORM (Object-Relational Mapping) para gerenciar o banco de dados. Certifique-se de configurar sua variável de ambiente `DATABASE_URL` no arquivo `.env` com a string de conexão PostgreSQL.
+
+```
+DATABASE_URL=your_postgresql_connection_string
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Aproveite a praticidade do Clipboard Online!

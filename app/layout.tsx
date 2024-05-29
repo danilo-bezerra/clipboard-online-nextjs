@@ -21,6 +21,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt-br">
+      <head>
+        <meta
+          name="google-site-verification"
+          content="Mp_kiEcFDFTxLqM9WIYWc_2Zxouv4XCxq5j-vvVMr_A"
+        />
+      </head>
       <body
         className={cn(
           "dark  dark:bg-slate-800 h-full flex flex-col",

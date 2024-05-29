@@ -26,6 +26,10 @@ export default function RootLayout({
           name="google-site-verification"
           content="Mp_kiEcFDFTxLqM9WIYWc_2Zxouv4XCxq5j-vvVMr_A"
         />
+        <meta
+          name="description"
+          content="Clipboard Online: Compartilhe e acesse textos de forma rápida e segura. Envie texto para a clipboard, válido por 15 minutos, e acesse com um código de 6 dígitos. Criado por Danilo Bezerra."
+        />
       </head>
       <body
         className={cn(
